@@ -9,17 +9,17 @@ client = genai.Client(api_key=settings.GEMINI_API_KEY)
 with open('./master_prompt.txt', 'r') as f:
     master_prompt = f.read()
 
-query = ""
+def get_model_response(query: str, prompt: str):
+    response = client.models.generate_content(
+       model="gemini-2.5-flash",
+       config=types.GenerateContentConfig(
+            system_instruction=prompt,
+            response_mime_type="application/json",
+            response_schema=UserRequest
+       ),
+        contents=query
+    )
+    return response
 
-response = client.models.generate_content(
-   model="gemini-2.5-flash",
-   config=types.GenerateContentConfig(
-        system_instruction=master_prompt,
-        response_mime_type="application/json",
-        response_schema=UserRequest
-   ),
-    contents=query
-)
-
-print(query)
-print(response.text)
+# print(query + '\n')
+# print(get_model_response(query=query, prompt=master_prompt, ))

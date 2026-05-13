@@ -33,7 +33,7 @@ class Exclusions(BaseModel):
         description="Specific authors the user does not want to read."
     )
     tone: List[str] = Field(
-        description="Specific moods, atmospheres, or emotional tones the user explicitly wants to avoid (e.g.,'depressing')."    
+        description="Specific moods, atmospheres, or emotional tones the user explicitly wants to avoid (e.g.,'depressing')." 
     )
 
 class UserRequest(BaseModel):
